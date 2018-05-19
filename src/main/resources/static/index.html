@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+<script type="text/javascript">
+window.onload = () => {
+	var data = { labels : moment.monthsShort(), series : [ [], [], ] };
+	$.getJSON( "http://localhost:8080/chart", result => {
+	result.forEach( element => {
+	data.series[0].push(element[0]); data.series[1].push(element[1]);
+	} );
+	new Chartist.Bar( ".ct-chart", data );
+	});
+	}
+</script>
+</head>
+<body>
+<div class="ct-chart .ct-golden-section">
+</div>
+</body>
+
+<script src="http://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+<script src="http://momentjs.com/downloads/moment.min.js"></script>
+</html>
